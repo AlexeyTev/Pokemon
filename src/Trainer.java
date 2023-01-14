@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 public class Trainer {
-    Pokemon pokemon;
-    String name;
+   private Pokemon pokemon;
+    private String name;
+
 
     public Trainer(Pokemon pokemon, String name) {
         this.pokemon = pokemon;
@@ -11,12 +12,8 @@ public class Trainer {
 
     public void turnOptions (Trainer otherTrainer) {
         Scanner scanner = new Scanner(System.in);
-        if (this.pokemon instanceof ElectricPokemon)
-        ((ElectricPokemon) this.pokemon).electricPokemonProperty();
-        if (otherTrainer.pokemon instanceof ElectricPokemon)
-        ((ElectricPokemon) otherTrainer.pokemon).electricPokemonProperty();
-        this.pokemon.turnAddHpAndAp();
-        otherTrainer.pokemon.turnAddHpAndAp();
+        this.pokemon.turnPass();
+        otherTrainer.pokemon.turnPass();
         boolean success = false;
 
         do {
@@ -49,9 +46,7 @@ public class Trainer {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
     @Override
     public String toString() {

@@ -2,11 +2,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public abstract class Pokemon {
-    Scanner scanner = new Scanner(System.in);
-    Random random = new Random();
+  public static Scanner scanner = new Scanner(System.in);
+    public static Random random = new Random();
    private String[] names;
     private String currentName;
-    private int[] maxHp;
+    private  int[] maxHp;
     private int[] maxAp;
     private int currentHp;
     private int currentAp;
@@ -16,9 +16,6 @@ public abstract class Pokemon {
     private boolean tripleAttackDamage;
     private boolean availableSpecialAbility;
 
-    public String[] getNames() {
-        return names;
-    }
 
     public String getCurrentName() {
         return currentName;
@@ -57,6 +54,19 @@ public abstract class Pokemon {
         tripleAttackDamage=false;
         availableSpecialAbility=true;
     }
+    public Pokemon(Pokemon pokemon) {
+        this.names = pokemon.names;
+        this.currentName=pokemon.names[currentLvl];
+        this.maxHp = pokemon.maxHp;
+        this.maxAp = pokemon.maxAp;
+        this.currentHp = pokemon.maxHp[currentLvl];
+        this.currentAp = (int) (pokemon.maxAp[currentLvl]*Constants.PRESET_AP);
+        this.maxLvl = pokemon.maxLvl;
+        this.currentLvl = 1;
+        this.abilities = pokemon.abilities;
+        tripleAttackDamage=false;
+        availableSpecialAbility=true;
+    }
     public abstract boolean useAttackAbility (Pokemon damaged);
     public abstract boolean specialAbility (Pokemon damaged);
     public int getMaxHp() {
@@ -71,9 +81,7 @@ public abstract class Pokemon {
         return currentHp;
     }
 
-    public int getCurrentAp() {
-        return currentAp;
-    }
+
 
     public boolean removeHp(int hpToRemove) {
         boolean hasHp = true;
@@ -113,6 +121,7 @@ public abstract class Pokemon {
         } else {
             this.currentAp += apToAdd;
         }
+        System.out.println(this.getCurrentName()+": +" + hpToAdd +"(HP) & +"+apToAdd+"(AP)");
     }
     public void waitOption() {
         this.tripleAttackDamage = false;
@@ -121,7 +130,7 @@ public abstract class Pokemon {
             case Constants.WAIT_OPTION_1 -> randomOptionAddHp();
             case Constants.WAIT_OPTION_2  -> randomOptionAddAp();
             case Constants.WAIT_OPTION_3  -> {this.tripleAttackDamage=true;
-                System.out.println(this.currentName + "you got Triple Attack Damage for next attack ");}
+                System.out.println(this.currentName + ", you got Triple Attack Damage for next attack ");}
         }
 
     }
@@ -199,5 +208,35 @@ public abstract class Pokemon {
 
         this.availableSpecialAbility = availableSpecialAbility;
     }
+    public boolean isEnoughApAndRemove (int chosenAttack){
+        return this.removeAp(this.getAbilities()[chosenAttack - 1].getApCost());
+    }
+    public int printAbilitiesAndReturnInput (){
+        int chosenAttack;
+        if (this.getMaxLvl()!=1) {
+            for (int i = 0; i < this.getCurrentLvl(); i++) {
+                System.out.println((i + 1) + ")" + this.getAbilities()[i]);
+            }
+            do {
+                chosenAttack = scanner.nextInt();
+            } while (chosenAttack > this.getCurrentLvl());
+        }else {for (int i = 0  ;i <this.getAbilities().length;i++) {
+            System.out.println(((i + 1) + ")" + this.getAbilities()[i]));
+        }
+            do {
+                chosenAttack = scanner.nextInt();
+            }while (chosenAttack>this.getAbilities().length);
 
+        }
+        return chosenAttack;
+    }
+    public void dealTripleDmg (Pokemon damaged, int dmg){
+        System.out.println(damaged.getCurrentName() + ": -"+dmg*Constants.TRIPLE_DMG+" HP");
+        damaged.removeHp(dmg*Constants.TRIPLE_DMG);
+        this.setTripleAttackDamage(false);}
+
+
+    public void turnPass(){
+        this.turnAddHpAndAp();
+    }
 }

@@ -6,6 +6,10 @@ public class FirePokemon extends Pokemon{
         super(names, maxHp, maxAp, maxLvl, abilities);
     }
 
+    public FirePokemon(Pokemon pokemon) {
+        super(pokemon);
+    }
+
     public void firePokemonProperty(){
         Random random = new Random();
         int chance25Percent = random.nextInt(1,5);
@@ -17,15 +21,10 @@ public class FirePokemon extends Pokemon{
     }
     public boolean useAttackAbility (Pokemon damaged){
         boolean success = true;
-        int chosenAttack;
+        boolean enoughAp;
+        int chosenAttack=this.printAbilitiesAndReturnInput();
+            enoughAp = isEnoughApAndRemove(chosenAttack);
         int dmg;
-        for (int i = 0 ; i <this.getCurrentLvl();i++){
-            System.out.println((i+1) +")"+ this.getAbilities()[i]);
-        }
-        do {
-            chosenAttack = scanner.nextInt();
-        }while (chosenAttack>this.getCurrentLvl());
-        boolean enoughAp= this.removeAp(this.getAbilities()[chosenAttack-1].getApCost());
         if (!enoughAp){
             System.out.println("You dont have enough AP");
             success = false;
@@ -33,8 +32,8 @@ public class FirePokemon extends Pokemon{
             dmg = this.getAbilities()[chosenAttack-1].getRandomDmg();
             if (this.isTripleAttackDamage()){
                 System.out.println(damaged.getCurrentName() + ": -"+dmg*Constants.TRIPLE_DMG+" HP");
-            damaged.removeHp(dmg*Constants.TRIPLE_DMG);
-            this.setTripleAttackDamage(false);}
+                dealTripleDmg(damaged,dmg);
+          }
             else {
                 System.out.println(damaged.getCurrentName() + ": -"+dmg+" HP");
                 damaged.removeHp(dmg);
@@ -54,12 +53,11 @@ public class FirePokemon extends Pokemon{
             damaged.removeHp(totalDmg);
             this.setAvailableSpecialAbility(false);
             success = true;
-            System.out.println("You dealt " + totalDmg + "to the opponent via Ultimate");
+            System.out.println("You dealt " + totalDmg + " (DMG) to the opponent via Ultimate");
         }else System.out.println("You already used your Ultimate ability ");
         return success;
     }
-    private void dealTripleDmg (Pokemon damaged, int dmg){
-        System.out.println(damaged.getCurrentName() + ": -"+dmg*Constants.TRIPLE_DMG+" HP");
-        damaged.removeHp(dmg*Constants.TRIPLE_DMG);
-        this.setTripleAttackDamage(false);}
+
+
+
 }

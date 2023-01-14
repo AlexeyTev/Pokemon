@@ -29,4 +29,7 @@ public class Constants {
     public static final int TRIPLE_DMG= 3;
     public static final int SPECIAL_ABILITY_HP_COST_FIRE = 2;
     public static final int SPECIAL_ABILITY_AP_COST_FIRE = 0;
+    public static final int START_BATTLE = 1;
+    public static final int GAME_INFO = 2;
+    public static final int QUIT = 9;
 }

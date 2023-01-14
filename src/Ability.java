@@ -24,9 +24,7 @@ public class Ability {
     public int getApCost(){
         return this.apCost;
     }
-    public String getName(){
-        return this.name;
-    }
+
 
     @Override
     public String toString() {

@@ -6,12 +6,17 @@ public class ElectricPokemon extends Pokemon{
         this.currentEnergy=0;
     }
 
+    public ElectricPokemon(Pokemon pokemon) {
+        super(pokemon);
+        this.currentEnergy = 0;
+    }
+
     public void electricPokemonProperty(){
         boolean passesHpThreshold = passesHpThreshold();
         if (this.currentEnergy<Constants.MAX_ENERGY && passesHpThreshold){
             this.currentEnergy+=Constants.ADD_ENERGY;
         }else if (!passesHpThreshold && currentEnergy>0){
-            currentEnergy=Constants.REMOVE_ENERGY;
+            this.currentEnergy=Constants.REMOVE_ENERGY;
         }
     }
     private boolean passesHpThreshold(){
@@ -22,20 +27,17 @@ public class ElectricPokemon extends Pokemon{
         return passesHpThreshold;
     }
 
-    public float getCurrentEnergyPercent() {
-        return (float) ((this.currentEnergy+100)/100);
+    public double getCurrentEnergyPercent() {
+        double multiplier =this.currentEnergy+100;
+        multiplier/=100;
+        return multiplier;
     }
     public boolean useAttackAbility (Pokemon damaged){
-        boolean success=true;
-        int chosenAttack;
+        boolean success = true;
+        int chosenAttack=printAbilitiesAndReturnInput();
+        boolean enoughAp=isEnoughApAndRemove(chosenAttack);
+
         int dmg;
-        for (int i = 0 ; i <this.getCurrentLvl();i++){
-            System.out.println((i+1) +")"+ this.getAbilities()[i]);
-        }
-        do {
-            chosenAttack = scanner.nextInt();
-        }while (chosenAttack>this.getCurrentLvl());
-        boolean enoughAp= this.removeAp(this.getAbilities()[chosenAttack-1].getApCost());
         if (!enoughAp){
             System.out.println(this.getCurrentName() + " ,You dont have enough AP");
             success= false;
@@ -61,14 +63,17 @@ public class ElectricPokemon extends Pokemon{
         }else System.out.println("You already used your Ultimate ability");
         return success;
     }
-    private void dealTripleDmg (Pokemon damaged, int dmg){
-        System.out.println(damaged.getCurrentName() + ": -"+dmg*Constants.TRIPLE_DMG+" HP");
-        damaged.removeHp(dmg*Constants.TRIPLE_DMG);
-        this.setTripleAttackDamage(false);}
+
 
     @Override
     public String toString() {
         return super.toString() +", "+ this.currentEnergy + "(ENERGY)";
+    }
+
+    @Override
+    public void turnPass() {
+        super.turnPass();
+        electricPokemonProperty();
     }
 }
 
