@@ -78,16 +78,16 @@ public class Main {
         battle.startBattle();
     }
     public static void printGameInfo (){
-        System.out.println("There are 2 kinds of pokemons: \n" +
+        System.out.println("There are 2 kinds of pokemons: \n\n" +
                 "Fire Pokemon - has 25% that after using an ability he will get damaged.\n" +
-                "In a battle you have one use of an ultimate ability that randomly uses 2 abilities on the opponent and cuts your HP by " +Constants.SPECIAL_ABILITY_HP_COST_FIRE + " & removes your AP\n"+
+                "In a battle you have one use of an ultimate ability that randomly uses 2 abilities on the opponent and cuts your HP by " +Constants.SPECIAL_ABILITY_HP_COST_FIRE + " & removes your AP\n\n"+
                 "Electric Pokemon - with every turn that passes and while he has more than "+Constants.HP_THRESHOLD +"% HP his ENERGY increases by "+Constants.ADD_ENERGY+" and the ability's DMG increases accordingly.\n" +
-                "In a battle you have one use of an ultimate ability that fills up the pokemons HP & AP to max \n" +
+                "In a battle you have one use of an ultimate ability that fills up the pokemons HP & AP to max \n\n" +
                 "-Every turn that passes you will have your HP & AP increased randomly.\n" +
                 "-You can use 'KICK' with no AP cost and deal  "+Constants.KICK_DMG+" DMG to the opponent \n" +
                 "-You can evolve to a stronger form with the cost of "+Constants.EVOLVE_2_HP_COST+"(HP) & "+Constants.EVOLVE_2_AP_COST+"(AP) for the first evolve\n" +
-                "  and "+Constants.EVOLVE_3_HP_COST+"(HP) & "+Constants.EVOLVE_3_AP_COST+"(AP) for the second evolve.(Only if your pokemon is being able to evolve)\n" +
-                "-You can wait a turn a get a random bonus of (HP/AP/Triple DMG next attack)\n" +
-                "~HAVE FUN~");
+                " and "+Constants.EVOLVE_3_HP_COST+"(HP) & "+Constants.EVOLVE_3_AP_COST+"(AP) for the second evolve.(Only if your pokemon is being able to evolve)\n" +
+                "-You can wait a turn a get a random bonus of (HP/AP/Triple DMG next attack)\n\n" +
+                "~HAVE FUN~\n\n\n");
     }
 }
