@@ -31,7 +31,6 @@ public class FirePokemon extends Pokemon{
         }else {
             dmg = this.getAbilities()[chosenAttack-1].getRandomDmg();
             if (this.isTripleAttackDamage()){
-                System.out.println(damaged.getCurrentName() + ": -"+dmg*Constants.TRIPLE_DMG+" HP");
                 dealTripleDmg(damaged,dmg);
           }
             else {

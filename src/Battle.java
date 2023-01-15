@@ -48,6 +48,7 @@ public class Battle {
 
 
         }while (!isDone());
+        System.out.println("||***************||\n\n\n");
     }
   private boolean turn (boolean trainer1Turn){
       System.out.println("CURRENT STATUS :" +trainer1 + " --- "+trainer2);
@@ -62,6 +63,7 @@ public class Battle {
             isDone=true;
             System.out.println(trainer1.getName() + " with " + trainer1.getPokemon().getCurrentName()+ " is the winner.");
         }
+
         return isDone;
     }
 }

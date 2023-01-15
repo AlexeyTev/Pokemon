@@ -127,7 +127,6 @@ public abstract class Pokemon {
         System.out.println(this.getCurrentName()+": +" + hpToAdd +"(HP) & +"+apToAdd+"(AP)");
     }
     public void waitOption() {
-        this.tripleAttackDamage = false;
         int randomOption = random.nextInt(Constants.WAIT_OPTION_1,Constants.WAIT_OPTION_3+1);
         switch (randomOption){
             case Constants.WAIT_OPTION_1 -> randomOptionAddHp();
@@ -235,7 +234,7 @@ public abstract class Pokemon {
         return chosenAttack;
     }
     public void dealTripleDmg (Pokemon damaged, int dmg){
-        System.out.println(damaged.getCurrentName() + ": -"+dmg*Constants.TRIPLE_DMG+" HP");
+        System.out.println(damaged.getCurrentName() + ": -"+dmg*Constants.TRIPLE_DMG+" HP (Original DMG X3)");
         damaged.isEnoughHpToRemove(dmg*Constants.TRIPLE_DMG);
         this.setTripleAttackDamage(false);}
 
