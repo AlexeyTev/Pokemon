@@ -2,10 +2,10 @@ import java.util.Random;
 
 public class Ability {
     Random random = new Random();
-    String name;
-    int minDmg;
-    int maxDmg;
-    int apCost;
+   private String name;
+   private int minDmg;
+   private int maxDmg;
+  private  int apCost;
 
     public Ability( String name, int minDmg, int maxDmg, int apCost) {
         this.name = name;
