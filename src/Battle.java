@@ -28,7 +28,7 @@ public class Battle {
 
 
     }
-    public Pokemon createDupPokemon (Pokemon pokemon){
+    private Pokemon createDupPokemon (Pokemon pokemon){
         Pokemon returnPok;
         if (pokemon instanceof FirePokemon){
             returnPok = new FirePokemon(pokemon);

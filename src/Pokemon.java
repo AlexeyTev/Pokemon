@@ -83,18 +83,21 @@ public abstract class Pokemon {
 
 
 
-    public boolean removeHp(int hpToRemove) {
+    public boolean isEnoughHpToRemove(int hpToRemove) {
         boolean hasHp = true;
         if (this.currentHp - hpToRemove > 0) {
-            this.currentHp -= hpToRemove;
+            this.removeHp(hpToRemove);
         } else {
             this.currentHp=0;
             hasHp = false;
         }
         return hasHp;
     }
+    private void removeHp (int hpToRemove){
+        this.currentHp -= hpToRemove;
+    }
 
-    public boolean removeAp(int apToRemove) {
+    private boolean removeAp(int apToRemove) {
         boolean hasAp = true;
         if (this.currentAp - apToRemove > 0) {
             this.currentAp -= apToRemove;
@@ -108,7 +111,7 @@ public abstract class Pokemon {
         return true;
     }
 
-    public void turnAddHpAndAp() {
+    private void turnAddHpAndAp() {
         int hpToAdd = random.nextInt(Constants.MIN_TURN_HP_ADD, Constants.MAX_TURN_HP_ADD + 1);
         int apToAdd = random.nextInt(Constants.MIN_TURN_AP_ADD, Constants.MAX_TURN_AP_ADD + 1);
         if (this.currentHp + hpToAdd > this.maxHp[this.getCurrentLvl() - 1]) {
@@ -211,6 +214,7 @@ public abstract class Pokemon {
     public boolean isEnoughApAndRemove (int chosenAttack){
         return this.removeAp(this.getAbilities()[chosenAttack - 1].getApCost());
     }
+
     public int printAbilitiesAndReturnInput (){
         int chosenAttack;
         if (this.getMaxLvl()!=1) {
@@ -232,7 +236,7 @@ public abstract class Pokemon {
     }
     public void dealTripleDmg (Pokemon damaged, int dmg){
         System.out.println(damaged.getCurrentName() + ": -"+dmg*Constants.TRIPLE_DMG+" HP");
-        damaged.removeHp(dmg*Constants.TRIPLE_DMG);
+        damaged.isEnoughHpToRemove(dmg*Constants.TRIPLE_DMG);
         this.setTripleAttackDamage(false);}
 
 

@@ -10,12 +10,12 @@ public class FirePokemon extends Pokemon{
         super(pokemon);
     }
 
-    public void firePokemonProperty(){
+    private void firePokemonProperty(){
         Random random = new Random();
         int chance25Percent = random.nextInt(1,5);
         if (chance25Percent == 1){
             int hpToRemove = random.nextInt(3,11);
-            this.removeHp(hpToRemove);
+            this.isEnoughHpToRemove(hpToRemove);
             System.out.println("You have been dealt: "+hpToRemove+" damage from the fire property");
         }
     }
@@ -36,7 +36,7 @@ public class FirePokemon extends Pokemon{
           }
             else {
                 System.out.println(damaged.getCurrentName() + ": -"+dmg+" HP");
-                damaged.removeHp(dmg);
+                damaged.isEnoughHpToRemove(dmg);
             }
             firePokemonProperty();
         }
@@ -50,7 +50,7 @@ public class FirePokemon extends Pokemon{
             this.setCurrentAp(Constants.SPECIAL_ABILITY_AP_COST_FIRE);
             this.setCurrentHp(this.getCurrentHp()/Constants.SPECIAL_ABILITY_HP_COST_FIRE);
             int totalDmg = this.getAbilities()[ability1].getRandomDmg() + this.getAbilities()[ability2].getRandomDmg();
-            damaged.removeHp(totalDmg);
+            damaged.isEnoughHpToRemove(totalDmg);
             this.setAvailableSpecialAbility(false);
             success = true;
             System.out.println("You dealt " + totalDmg + " (DMG) to the opponent via Ultimate");

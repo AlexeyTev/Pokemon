@@ -11,7 +11,7 @@ public class ElectricPokemon extends Pokemon{
         this.currentEnergy = 0;
     }
 
-    public void electricPokemonProperty(){
+    private void electricPokemonProperty(){
         boolean passesHpThreshold = passesHpThreshold();
         if (this.currentEnergy<Constants.MAX_ENERGY && passesHpThreshold){
             this.currentEnergy+=Constants.ADD_ENERGY;
@@ -27,7 +27,7 @@ public class ElectricPokemon extends Pokemon{
         return passesHpThreshold;
     }
 
-    public double getCurrentEnergyPercent() {
+    private double getCurrentEnergyPercent() {
         double multiplier =this.currentEnergy+100;
         multiplier/=100;
         return multiplier;
@@ -47,7 +47,7 @@ public class ElectricPokemon extends Pokemon{
                 dealTripleDmg(damaged,dmg);}
             else {
                 System.out.println(damaged.getCurrentName() + ": -"+dmg+" HP");
-                damaged.removeHp(dmg);
+                damaged.isEnoughHpToRemove(dmg);
             }
         }
         return success;

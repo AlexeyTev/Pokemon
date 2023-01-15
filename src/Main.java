@@ -43,6 +43,8 @@ public class Main {
       int []electabuzzAp = {100,120};
       Ability [] electabuzzAbilities = {new Ability("Thunder",40,50,60),
       new Ability("Thunder Punch",50,120,80)};
+
+
         FirePokemon charmender = new FirePokemon(charmenderNames,charmenderHp,charmenderAp,3,charmenderAbilities);
         FirePokemon salandit = new FirePokemon(salanditNames,salanditHp,salanditAp,2,salanditAbilities);
         FirePokemon molters = new FirePokemon(moltersNames,moltersHp,moltersAp,1,moltersAbilities);
@@ -50,6 +52,8 @@ public class Main {
         ElectricPokemon electabuzz = new ElectricPokemon(electabuzzNames,electabuzzHp,electabuzzAp,2,electabuzzAbilities);
         ElectricPokemon bitzle = new ElectricPokemon(bitzleNames,bitzleHp,bitzleAp,2,bitzleAbilities);
         Pokemon [] allPokemons = new Pokemon[6];
+
+
         allPokemons[0]=charmender;
         allPokemons[1]=salandit;
         allPokemons[2]=molters;
