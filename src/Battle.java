@@ -13,10 +13,11 @@ public class Battle {
     public void createTrainers(){
         Scanner scanner =new Scanner(System.in);
         Random random = new Random();
+        Trainer trainer1;
         Trainer trainer2;
         int randIndex = random.nextInt(0,allPokemons.length);
         System.out.println("Insert 1st trainer name:");
-        Trainer trainer1 = new Trainer(allPokemons[randIndex], scanner.nextLine());
+         trainer1 = new Trainer(allPokemons[randIndex], scanner.nextLine());
         this.trainer1=trainer1;
        randIndex=random.nextInt(0,allPokemons.length);
         System.out.println("Insert 2nd trainer name:");

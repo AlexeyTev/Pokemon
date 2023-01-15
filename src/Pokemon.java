@@ -158,8 +158,8 @@ public abstract class Pokemon {
         boolean isEvolvedSuccessfully = false;
         if (this.currentLvl <this.maxLvl){
             switch (this.currentLvl){
-                case 1 -> {if (this.currentHp-Constants.EVOLVE_2_HP_COST>0){
-                    if (this.currentAp-Constants.EVOLVE_2_AP_COST>0){
+                case 1 -> {if (this.currentHp-Constants.EVOLVE_2_HP_COST>=0){
+                    if (this.currentAp-Constants.EVOLVE_2_AP_COST>=0){
                         this.currentLvl++;
                         this.currentHp-=Constants.EVOLVE_2_HP_COST;
                         this.currentAp-=Constants.EVOLVE_2_AP_COST;
@@ -167,8 +167,8 @@ public abstract class Pokemon {
                     }else System.out.println("You dont have enough attack points ("+Constants.EVOLVE_2_AP_COST+")");
                 }else System.out.println("You dont have enough hp ("+Constants.EVOLVE_2_HP_COST+")");
                 }
-                case 2 -> {if (this.currentHp-Constants.EVOLVE_3_HP_COST>0){
-                    if (this.currentAp-Constants.EVOLVE_3_AP_COST>0){
+                case 2 -> {if (this.currentHp-Constants.EVOLVE_3_HP_COST>=0){
+                    if (this.currentAp-Constants.EVOLVE_3_AP_COST>=0){
                         this.currentLvl++;
                         this.currentHp-=Constants.EVOLVE_3_HP_COST;
                         this.currentAp-=Constants.EVOLVE_3_AP_COST;
