@@ -50,12 +50,13 @@ public class FirePokemon extends Pokemon{
             this.setCurrentHp(this.getCurrentHp()/Constants.SPECIAL_ABILITY_HP_COST_FIRE);
             int totalDmg = this.getAbilities()[ability1].getRandomDmg() + this.getAbilities()[ability2].getRandomDmg();
             damaged.isEnoughHpToRemove(totalDmg);
-            this.setAvailableSpecialAbility(false);
+            //this.setAvailableSpecialAbility(false);
             success = true;
             System.out.println("You dealt " + totalDmg + " (DMG) to the opponent via Ultimate");
         }else System.out.println("You already used your Ultimate ability ");
         return success;
     }
+
 
 
 

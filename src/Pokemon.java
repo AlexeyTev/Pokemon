@@ -242,4 +242,5 @@ public abstract class Pokemon {
     public void turnPass(){
         this.turnAddHpAndAp();
     }
+
 }
