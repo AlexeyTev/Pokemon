@@ -14,20 +14,20 @@ public class Ability {
         this.apCost = apCost;
     }
 
-    public int getRandomDmg(){
+    public int getRandomDmg(){//O(1)
         int dmg;
         if (this.minDmg!=this.maxDmg) {
             dmg = random.nextInt(this.minDmg, this.maxDmg + 1);
         }else dmg = minDmg;
         return dmg;
     }
-    public int getApCost(){
+    public int getApCost(){//O(1)
         return this.apCost;
     }
 
 
     @Override
-    public String toString() {
+    public String toString() {//O(1)
         String output = this.name + ": " + this.apCost+ "(AP)";
         if (minDmg!=maxDmg){
             output+= "," + minDmg + "-" + maxDmg + "(DMG)";

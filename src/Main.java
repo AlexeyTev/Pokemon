@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         mainMenu();
     }
-    public static void mainMenu (){
+    public static void mainMenu (){//O(1)
         int userChoice;
         do {
             System.out.println("MAIN MENU:\n"+Constants.START_BATTLE+")Start new battle.\n" +
@@ -19,11 +19,11 @@ public class Main {
              }
         }while (userChoice !=Constants.QUIT);
     }
-    public static void startNewBattle (Battle battle){
+    public static void startNewBattle (Battle battle){//O(1)
         battle.createTrainers();
         battle.startBattle();
     }
-    public static void printGameInfo (){
+    public static void printGameInfo (){//O(1)
         System.out.println("There are 2 kinds of pokemons: \n\n" +
                 "Fire Pokemon - has 25% that after using an ability he will get damaged.\n" +
                 "In a battle you have one use of an ultimate ability that randomly uses 2 abilities on the opponent and cuts your HP by " +Constants.SPECIAL_ABILITY_HP_COST_FIRE + " & removes your AP\n\n"+
@@ -36,7 +36,7 @@ public class Main {
                 "-You can wait a turn a get a random bonus of (HP/AP/Triple DMG next attack)\n\n" +
                 "~HAVE FUN~\n\n\n");
     }
-    public static Battle createNewBattle (){
+    public static Battle createNewBattle (){//O(1)
         String [] charmenderNames = {"Charmender", "Charmeleon", "Charizard"};
         int [] charmenderHp = {60,80,130};
         int [] charmenderAp = {40,60,80};

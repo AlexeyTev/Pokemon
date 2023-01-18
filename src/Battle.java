@@ -10,16 +10,16 @@ public class Battle {
         this.allPokemons=allPokemons;
     }
 
-    public void createTrainers(){
+    public void createTrainers(){//O(1)
         Scanner scanner =new Scanner(System.in);
         Random random = new Random();
         Trainer trainer1;
         Trainer trainer2;
-        int randIndex = random.nextInt(0,allPokemons.length);
+        int randIndex = random.nextInt(allPokemons.length);
         System.out.println("Insert 1st trainer name:");
          trainer1 = new Trainer(allPokemons[randIndex], scanner.nextLine());
         this.trainer1=trainer1;
-       randIndex=random.nextInt(0,allPokemons.length);
+        randIndex=random.nextInt(allPokemons.length);
         System.out.println("Insert 2nd trainer name:");
         if (allPokemons[randIndex].equals(trainer1.getPokemon())) {
         Pokemon dup = createDupPokemon(trainer1.getPokemon());
@@ -29,7 +29,7 @@ public class Battle {
 
 
     }
-    private Pokemon createDupPokemon (Pokemon pokemon){
+    private Pokemon createDupPokemon (Pokemon pokemon){//O(1)
         Pokemon returnPok;
         if (pokemon instanceof FirePokemon){
             returnPok = new FirePokemon(pokemon);
@@ -37,7 +37,7 @@ public class Battle {
 
         return returnPok;
     }
-    public void startBattle (){
+    public void startBattle (){//O(1)
         boolean trainer1Turn = false;
         do {trainer1Turn = turn(trainer1Turn);
 
@@ -51,11 +51,11 @@ public class Battle {
         }while (!isDone());
         System.out.println("||***************||\n\n\n");
     }
-  private boolean turn (boolean trainer1Turn){
+  private boolean turn (boolean trainer1Turn){//O(1)
       System.out.println("CURRENT STATUS :" +trainer1 + " --- "+trainer2);
       return !trainer1Turn;
   }
-    private boolean isDone (){
+    private boolean isDone (){//O(1)
         boolean isDone = false;
         if (trainer1.getPokemon().getCurrentHp()<=0){
             isDone = true;

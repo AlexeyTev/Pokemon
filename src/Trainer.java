@@ -10,7 +10,7 @@ public class Trainer {
         this.name = name;
     }
 
-    public void turnOptions (Trainer otherTrainer) {
+    public void turnOptions (Trainer otherTrainer) {//O(n)
         Scanner scanner = new Scanner(System.in);
         this.pokemon.turnPass();
         otherTrainer.pokemon.turnPass();
@@ -37,19 +37,19 @@ public class Trainer {
         }while (!success);
 
     }
-    public Pokemon getPokemon() {
+    public Pokemon getPokemon() {//O(1)
         return pokemon;
     }
 
 
-    public String getName() {
+    public String getName() {//O(1)
         return name;
     }
 
 
 
     @Override
-    public String toString() {
+    public String toString() {//O(1)
         return this.name + " ("+this.pokemon+")";
     }
 }

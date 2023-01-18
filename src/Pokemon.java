@@ -29,15 +29,15 @@ public abstract class Pokemon {
         return currentLvl;
     }
 
-    public Ability[] getAbilities() {
+    public Ability[] getAbilities() {//O(1)
         return abilities;
     }
 
-    public boolean isTripleAttackDamage() {
+    public boolean isTripleAttackDamage() {//O(1)
         return tripleAttackDamage;
     }
 
-    public boolean isAvailableSpecialAbility() {
+    public boolean isAvailableSpecialAbility() {//O(1)
         return availableSpecialAbility;
     }
 
@@ -69,21 +69,21 @@ public abstract class Pokemon {
     }
     public abstract boolean useAttackAbility (Pokemon damaged);
     public abstract boolean specialAbility (Pokemon damaged);
-    public int getMaxHp() {
+    public int getMaxHp() {//O(1)
         return maxHp[currentLvl -1];
     }
 
-    public int getMaxAp() {
+    public int getMaxAp() {//O(1)
         return maxAp[currentLvl -1];
     }
 
-    public int getCurrentHp() {
+    public int getCurrentHp() {//O(1)
         return currentHp;
     }
 
 
 
-    public boolean isEnoughHpToRemove(int hpToRemove) {
+    public boolean isEnoughHpToRemove(int hpToRemove) {//O(1)
         boolean hasHp = true;
         if (this.currentHp - hpToRemove > 0) {
             this.removeHp(hpToRemove);
@@ -93,11 +93,11 @@ public abstract class Pokemon {
         }
         return hasHp;
     }
-    private void removeHp (int hpToRemove){
+    private void removeHp (int hpToRemove){//O(1)
         this.currentHp -= hpToRemove;
     }
 
-    private boolean removeAp(int apToRemove) {
+    private boolean removeAp(int apToRemove) {//O(1)
         boolean hasAp = true;
         if (this.currentAp - apToRemove > 0) {
             this.currentAp -= apToRemove;
@@ -105,13 +105,13 @@ public abstract class Pokemon {
         return hasAp;
     }
 
-    public boolean kick(Pokemon damagedPokemon) {
+    public boolean kick(Pokemon damagedPokemon) {//O(1)
         damagedPokemon.currentHp -= Constants.KICK_DMG;
         System.out.println(damagedPokemon.currentName + ": -"+Constants.KICK_DMG + "(HP)");
         return true;
     }
 
-    private void turnAddHpAndAp() {
+    private void turnAddHpAndAp() {//O(1)
         int hpToAdd = random.nextInt(Constants.MIN_TURN_HP_ADD, Constants.MAX_TURN_HP_ADD + 1);
         int apToAdd = random.nextInt(Constants.MIN_TURN_AP_ADD, Constants.MAX_TURN_AP_ADD + 1);
         if (this.currentHp + hpToAdd > this.maxHp[this.getCurrentLvl() - 1]) {
@@ -126,7 +126,7 @@ public abstract class Pokemon {
         }
         System.out.println(this.getCurrentName()+": +" + hpToAdd +"(HP) & +"+apToAdd+"(AP)");
     }
-    public void waitOption() {
+    public void waitOption() {//O(1)
         int randomOption = random.nextInt(Constants.WAIT_OPTION_1,Constants.WAIT_OPTION_3+1);
         switch (randomOption){
             case Constants.WAIT_OPTION_1 -> randomOptionAddHp();
@@ -136,7 +136,7 @@ public abstract class Pokemon {
         }
 
     }
-    private void randomOptionAddHp(){
+    private void randomOptionAddHp(){//O(1)
         int hpToAdd = random.nextInt(Constants.MIN_WAIT_HP_ADD,Constants.MAX_WAIT_HP_ADD);
         if (this.currentHp+hpToAdd>this.maxHp[getCurrentLvl() -1]){
             this.currentHp=this.maxHp[getCurrentLvl() -1];
@@ -145,7 +145,7 @@ public abstract class Pokemon {
         }
         System.out.println(this.currentName + " : +"+ hpToAdd + " (HP) for waiting");
     }
-    private void randomOptionAddAp(){
+    private void randomOptionAddAp(){//O(1)
         int apToAdd = random.nextInt(Constants.MIN_WAIT_AP_ADD,Constants.MAX_WAIT_AP_ADD);
         if (this.currentAp+apToAdd>this.maxAp[getCurrentLvl() -1]){
             this.currentAp=this.maxAp[getCurrentLvl() -1];
@@ -154,7 +154,7 @@ public abstract class Pokemon {
         }
         System.out.println(this.currentName + ": +"+ apToAdd + " (AP) for waiting");
     }
-    public boolean evolve (){
+    public boolean evolve (){//O(1)
         boolean isEvolvedSuccessfully = false;
         if (this.currentLvl <this.maxLvl){
             switch (this.currentLvl){
@@ -183,38 +183,38 @@ public abstract class Pokemon {
             System.out.println("You are now: " + this.currentName);}
         return isEvolvedSuccessfully;
     }
-    private void setEvolvedName(){
+    private void setEvolvedName(){//O(1)
         this.currentName=this.names[currentLvl -1];
     }
 
 
 
     @Override
-    public String toString() {
+    public String toString() {//O(1)
         return currentName + ": "+ currentHp + "/"+this.maxHp[currentLvl -1] + "(HP), "+currentAp +  "/"+ maxAp[currentLvl -1]+"(AP)";
     }
 
-    public void setTripleAttackDamage(boolean tripleAttackDamage) {
+    public void setTripleAttackDamage(boolean tripleAttackDamage) {//O(1)
         this.tripleAttackDamage = tripleAttackDamage;
     }
 
-    public void setCurrentHp(int currentHp) {
+    public void setCurrentHp(int currentHp) {//O(1)
         this.currentHp = currentHp;
     }
 
-    public void setCurrentAp(int currentAp) {
+    public void setCurrentAp(int currentAp) {//O(1)
         this.currentAp = currentAp;
     }
 
-    public void setAvailableSpecialAbility(boolean availableSpecialAbility) {
+    public void setAvailableSpecialAbility(boolean availableSpecialAbility) {//O(1)
 
         this.availableSpecialAbility = availableSpecialAbility;
     }
-    public boolean isEnoughApAndRemove (int chosenAttack){
+    public boolean isEnoughApAndRemove (int chosenAttack){//O(1)
         return this.removeAp(this.getAbilities()[chosenAttack - 1].getApCost());
     }
 
-    public int printAbilitiesAndReturnInput (){
+    public int printAbilitiesAndReturnInput (){//O(n)
         int chosenAttack;
         if (this.getMaxLvl()!=1) {
             for (int i = 0; i < this.getCurrentLvl(); i++) {
@@ -233,13 +233,13 @@ public abstract class Pokemon {
         }
         return chosenAttack;
     }
-    public void dealTripleDmg (Pokemon damaged, int dmg){
+    public void dealTripleDmg (Pokemon damaged, int dmg){//O(1)
         System.out.println(damaged.getCurrentName() + ": -"+dmg*Constants.TRIPLE_DMG+" HP (Original DMG X3)");
         damaged.isEnoughHpToRemove(dmg*Constants.TRIPLE_DMG);
         this.setTripleAttackDamage(false);}
 
 
-    public void turnPass(){
+    public void turnPass(){//O(1)
         this.turnAddHpAndAp();
     }
 

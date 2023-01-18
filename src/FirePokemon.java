@@ -10,7 +10,7 @@ public class FirePokemon extends Pokemon{
         super(pokemon);
     }
 
-    private void firePokemonProperty(){
+    private void firePokemonProperty(){//O(1)
         Random random = new Random();
         int chance25Percent = random.nextInt(1,5);
         if (chance25Percent == 1){
@@ -19,7 +19,7 @@ public class FirePokemon extends Pokemon{
             System.out.println("You have been dealt: "+hpToRemove+" damage from the fire property");
         }
     }
-    public boolean useAttackAbility (Pokemon damaged){
+    public boolean useAttackAbility (Pokemon damaged){//O(1)
         boolean success = true;
         boolean enoughAp;
         int chosenAttack=this.printAbilitiesAndReturnInput();
@@ -41,7 +41,7 @@ public class FirePokemon extends Pokemon{
         }
         return success;
     }
-    public boolean specialAbility (Pokemon damaged) {
+    public boolean specialAbility (Pokemon damaged) {//O(1)
         boolean success = false;
         if (this.isAvailableSpecialAbility()) {
             int ability1 = random.nextInt(0, this.getCurrentLvl() );

@@ -11,7 +11,7 @@ public class ElectricPokemon extends Pokemon{
         this.currentEnergy = 0;
     }
 
-    private void electricPokemonProperty(){
+    private void electricPokemonProperty(){//O(1)
         boolean passesHpThreshold = passesHpThreshold();
         if (this.currentEnergy<Constants.MAX_ENERGY && passesHpThreshold){
             this.currentEnergy+=Constants.ADD_ENERGY;
@@ -19,7 +19,7 @@ public class ElectricPokemon extends Pokemon{
             this.currentEnergy=Constants.REMOVE_ENERGY;
         }
     }
-    private boolean passesHpThreshold(){
+    private boolean passesHpThreshold(){//O(1)
         boolean passesHpThreshold = true;
         int percentage = this.getCurrentHp()*100/this.getMaxHp();
         if (percentage<Constants.HP_THRESHOLD)
@@ -27,12 +27,12 @@ public class ElectricPokemon extends Pokemon{
         return passesHpThreshold;
     }
 
-    private double getCurrentEnergyPercent() {
+    private double getCurrentEnergyPercent() {//O(1)
         double multiplier =this.currentEnergy+100;
         multiplier/=100;
         return multiplier;
     }
-    public boolean useAttackAbility (Pokemon damaged){
+    public boolean useAttackAbility (Pokemon damaged){//O(1)
         boolean success = true;
         int chosenAttack=printAbilitiesAndReturnInput();
         boolean enoughAp=isEnoughApAndRemove(chosenAttack);
@@ -52,7 +52,7 @@ public class ElectricPokemon extends Pokemon{
         }
         return success;
     }
-    public boolean specialAbility (Pokemon damaged){
+    public boolean specialAbility (Pokemon damaged){//O(1)
         boolean success = false;
         if (this.isAvailableSpecialAbility()){
             this.setCurrentHp(this.getMaxHp());
@@ -66,12 +66,12 @@ public class ElectricPokemon extends Pokemon{
 
 
     @Override
-    public String toString() {
+    public String toString() {//O(1)
         return super.toString() +", "+ this.currentEnergy + "(ENERGY)";
     }
 
     @Override
-    public void turnPass() {
+    public void turnPass() {//O(1)
         super.turnPass();
         electricPokemonProperty();
     }
